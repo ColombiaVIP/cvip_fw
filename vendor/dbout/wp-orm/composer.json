@@ -1,0 +1,72 @@
+{
+  "name": "dbout/wp-orm",
+  "description": "WordPress ORM with Eloquent.",
+  "type": "package",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dimitri BOUTEILLE",
+      "email": "bonjour@dimitri-bouteille.fr",
+      "homepage": "https://github.com/dimitriBouteille",
+      "role": "Developer"
+    }
+  ],
+  "keywords": ["wordpress", "wp", "orm", "database", "eloquent", "db", "sql", "migration"],
+  "homepage": "https://github.com/dimitriBouteille/wp-orm",
+  "support": {
+    "issues": "https://github.com/dimitriBouteille/wp-orm/issues",
+    "source": "https://github.com/dimitriBouteille/wp-orm/"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=8.2",
+    "laravel/serializable-closure": ">=1.3",
+    "illuminate/database": "^11.0"
+  },
+  "suggest": {
+    "illuminate/events": "Add events to your models"
+  },
+  "autoload": {
+    "psr-4": {
+      "Dbout\\WpOrm\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Dbout\\WpOrm\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.64",
+    "roots/wordpress": "^6.6",
+    "phpunit/phpunit": "^11.0",
+    "yoast/phpunit-polyfills": "^3.0",
+    "phpstan/phpstan": "^2.0",
+    "rector/rector": "^2.0",
+    "phpstan/extension-installer": "^1.4",
+    "szepeviktor/phpstan-wordpress": "^2.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "roots/wordpress-core-installer": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "extra": {
+    "phpstan": {
+      "includes": [
+        "extension.neon"
+      ]
+    },
+    "wordpress-install-dir": "web/wordpress"
+  },
+  "scripts": {
+    "rector": "vendor/bin/rector process src --dry-run",
+    "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+    "test:unit": "vendor/bin/phpunit --no-coverage",
+    "test:wordPress": "vendor/bin/phpunit -c phpunit-wp.xml --no-coverage",
+    "csFixer": "vendor/bin/php-cs-fixer fix --verbose --diff --dry-run",
+    "fix:csFixer": "vendor/bin/php-cs-fixer fix"
+  }
+}
